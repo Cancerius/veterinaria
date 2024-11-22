@@ -1,0 +1,18 @@
+// scss/app.scss
+
+// Importar funciones y variables de Bootstrap
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+
+// Definir breakpoints personalizados
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px, // Agregar un nuevo breakpoint
+);
+
+// Importar Bootstrap
+@import "../../node_modules/bootstrap/scss/bootstrap";

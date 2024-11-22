@@ -175,7 +175,7 @@ textarea.form-control {
 
 .table {
 	color: #000;
-	border: 1px solid #f0f0f0;
+	border: 1px solid #0f0f0f;
 }
 .table.table-white {
 	background-color: #fff;
@@ -209,6 +209,54 @@ table.table td h2 span {
 	font-size: 12px;
 	margin-top: 3px;
 }
+
+th{
+	font-family: "Poetsen One", sans-serif;
+  	font-weight: 400;
+  	font-style: normal;
+}
+
+td{
+	font-family: "Roboto", sans-serif;
+  	font-weight: 300;
+  	font-style: italic;
+}
+
+h4{
+	font-family: "Poetsen One", sans-serif;
+  	font-weight: 400;
+  	font-style: normal;
+}
+
+ul{
+	font-family: "Poetsen One", sans-serif;
+  	font-weight: 400;
+  	font-style: normal;
+}
+
+a{
+	font-family: "Poetsen One", sans-serif;
+  	font-weight: 400;
+  	font-style: normal;
+}
+
+label{
+	font-family: "Roboto", sans-serif;
+  	font-weight: 300;
+  	font-style: italic;
+}
+
+button{
+	font-family: "Poetsen One", sans-serif;
+  	font-weight: 400;
+  	font-style: normal;
+}
+h3{
+	font-family: "Poetsen One", sans-serif;
+  	font-weight: 400;
+  	font-style: normal;
+}
+
 
 /*-----------------
 	3. Helper Class

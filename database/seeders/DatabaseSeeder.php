@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 
 
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -14,13 +15,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-       
-        $user = new User;
-        $user->name ='Admin';
-        $user->email ='admin@test.com'; 
-        $user->password = '1234';
-        $user->role = 'admin';
-        $user->save();
+
+        $this->call(RolSeeder::class);
+        $this->call(UserSeeder::class);
+        
 
     }        
     }

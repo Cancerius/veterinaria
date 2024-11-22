@@ -3,12 +3,32 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <link rel="shortcut icon" type="image/x-icon" href="assetsadmin/img/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('assetsadmin/img/favicon.ico')}}">
     <title>Administrador</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="assetsadmin/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="assetsadmin/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="assetsadmin/css/style.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('assetsadmin/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assetsadmin/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assetsadmin/css/style.css')}}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Sedan:ital@0;1&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Jaini&family=Jaini+Purva&family=Kalam:wght@300;400;700&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Montserrat+Alternates:wght@100;200;300;400;500;600;700;800;900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poetsen+One&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sedan:ital@0;1&family=The+Girl+Next+Door&family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Jaini&family=Jaini+Purva&family=Kalam:wght@300;400;700&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Montserrat+Alternates:wght@100;200;300;400;500;600;700;800;900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poetsen+One&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sedan:ital@0;1&family=The+Girl+Next+Door&family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    
+    
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer">
     <!--[if lt IE 9]>
 		<script src="assets/js/html5shiv.min.js"></script>
 		<script src="assets/js/respond.min.js"></script>
@@ -19,8 +39,8 @@
     <div class="main-wrapper">
         <div class="header">
 			<div class="header-left">
-				<a href="index-2.html" class="logo">
-					<img src="assetsadmin/img/logo.jpg" width="170" height="48" alt="">
+				<a class="logo">
+					<img src="{{asset('assetsadmin/img/logo.jpg')}}" width="170" height="48" alt="">
 				</a>
 			</div>
 			<a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
@@ -30,7 +50,7 @@
                 <li class="nav-item dropdown has-arrow">
                     <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
                         
-						<span>{{auth()->user()->name}}</span>
+						<span>{{auth()->user()->nombre_completo}}</span>
                     </a>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="{{ route('login.destroy')}}">Salir</a>
@@ -45,132 +65,84 @@
                     <ul>
                         <li class="menu-title">Menu</li>
                         <li class="active">
-                            <a href="{{ route('admin.index')}}"><i class="fa fa-dashboard"></i> <span>Panel de administracion</span></a>
+                            <a href="{{ route('admin.index')}}"><i class="fa fa-dashboard"></i> <span>Inicio</span></a>
                         </li>
+                        @can('Tabla veterinario')
 						<li>
-                            <a href="{{ route('admin.doctores.doctor')}}"><i class="fa fa-user-md"></i> <span>Doctores</span></a>
+                            <a href="{{ route('admin.doctores.doctor')}}"><i class="fa fa-user-md"></i> <span>Veterinarios</span></a>
                         </li>
+                        @endcan
+                        @can('Tabla roles')
                         <li>
-                            <a href="{{ route('admin.pacientes.paciente')}}"><i class="fa fa-wheelchair"></i> <span>Pacientes</span></a>
+                            <a href="{{route('admin.roles.index')}}" ><i class="fa fa-users-cog "></i> <span>Lista de Roles</span></a>
                         </li>
+                        @endcan
+                        <li class="submenu">
+                            
+							<a href=""><i class="fa fa-book"></i> <span>Registros</span> <span class="menu-arrow"></span></a>
+                            
+							<ul style="display: none;">
+                                @can('Tabla propietario')
+								<li><a href="{{route('admin.registros.propietarios.propietario')}}" ><i class="fa fa-book"></i>Propietarios</a></li>
+								@endcan
+                                @can('Tabla mascota')
+                                <li><a href="{{route('admin.registros.mascotas.mascota')}}"><i class="fa fa-book"></i>Mascotas</a></li>
+                                @endcan
+                                @can('Tabla consulta')
+                                <li><a href="{{route('admin.registros.consultas.consulta')}}"><i class="fa fa-book"></i>Consultas</a></li>
+                                @endcan
+                                @can('Tabla cirugia')
+                                <li><a href="{{route('admin.registros.cirugias.cirugia')}}"><i class="fa fa-book"></i>Cirugias</a></li>
+                                @endcan
+                                @can('Tabla vacunacion')
+                                <li><a href="{{route('admin.registros.vacunacion.vacuna')}}"><i class="fa fa-book"></i>Vacunacion</a></li>
+								@endcan
+							</ul>
+						</li>
     
                         <li>
-                            <a href="{{ route('admin.consultas.consulta')}}"><i class="fa fa-hospital-o"></i> <span>Consultas</span></a>
+                            @can('Tabla peluqueria y baño')
+                            <a href="{{route('admin.servicios.servicio')}}"><i class="fa fa-book"></i> <span>Baño y Peluqueria</span></a>
                         </li>
-
+                        @endcan
+                        @can('Tabla productos')
                         <li>
-                            <a href="{{ route('admin.datos.dato')}}"><i class="fa fa-hospital-o"></i> <span>Datos Exploratorios</span></a>
-                        </li>
-					
-						<li>
-							<a href="{{ route('admin.vacunas.vacuna')}}"><i class="fa fa-hospital-o"></i> <span>Vacunas</span> <span></span></a>
-							
-						</li>
-                     
-                        <li>
-                            <a href="{{ route('admin.peluquerias.peluqueria')}}"><i class="fa fa-hospital-o"></i> <span>Peluqueria y Baño</span> <span></span></a>
-                            
-                        </li>
-                        
+                            <a href="{{route('admin.productos.producto')}}"><i class="fa fa-hospital-o"></i> <span>Productos</span></a>
+                        </li> 
+                        @endcan   
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="page-wrapper">
-            <div class="content">
+        <div class="page-wrapper d-flex align-items-center justify-content-center">
+            <div class="content ">
                 <div class="row">
-                    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-                        <div class="dash-widget">
-							<span class="dash-widget-bg1"><i class="fa fa-stethoscope" aria-hidden="true"></i></span>
-							<div class="dash-widget-info text-right">
-								<h3>1</h3>
-								<span class="widget-title1">Doctores <i class="fa fa-check" aria-hidden="true"></i></span>
-							</div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-                        <div class="dash-widget">
-                            <span class="dash-widget-bg2"><i class="fa fa-user-o"></i></span>
-                            <div class="dash-widget-info text-right">
-                                <h3>1</h3>
-                                <span class="widget-title2">Pacientes <i class="fa fa-check" aria-hidden="true"></i></span>
+                    <!-- Bloque para la información de la clínica -->
+                    <div class="col-md-12 col-lg-12">
+                        <div class="dash-widget ">
+                            <div class="dash-widget-info text-center">
+                               
+                                <img src="assetsadmin/img/logo1.jpg" alt="Logo de la Clínica Veterinaria" class="img-fluid" style="border-radius: 10px;" width="1000" height="1000">
+
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-                        <div class="dash-widget">
-                            <span class="dash-widget-bg3"><i class="fa fa-user-md" aria-hidden="true"></i></span>
-                            <div class="dash-widget-info text-right">
-                                <h3>1</h3>
-                                <span class="widget-title3">Pacientes atendidos <i class="fa fa-check" aria-hidden="true"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    
                 </div>
-				
-				<div class="row">
-					<div class="col-12 col-md-6 col-lg-8 col-xl-8">
-						<div class="card">
-							<div class="card-header">
-								<h4 class="card-title d-inline-block">Pacientes atendidos</h4>
-							</div>
-							<div class="card-body p-0">
-								<div class="table-responsive">
-									<table class="table mb-0">
-										<thead class="d-none">
-											<tr>
-												<th>Nombre Paciente</th>
-												<th>Nombre Doctor</th>
-												<th>Hora</th>
-												<th class="text-right">Estado</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td style="min-width: 200px;">
-													<a class="avatar" href="profile.html">B</a>
-													<h2><a href="profile.html">Bernardo Galaviz <span>New York, USA</span></a></h2>
-												</td>                 
-												<td>
-													<h5 class="time-title p-0">Cita con</h5>
-													<p>Dr. Cristina Groves</p>
-												</td>
-												<td>
-													<h5 class="time-title p-0">Hora</h5>
-													<p>7.00 PM</p>
-												</td>
-												<td class="text-right">
-													<a href="appointments.html" class="btn btn-outline-primary take-btn">Comenzar</a>
-												</td>
-											</tr>
-											
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-                    <div class="col-12 col-md-6 col-lg-4 col-xl-4">
-                        <div class="card member-panel">
-							
-                            
-                            
-                        </div>
-                    </div>
-				</div>
-				
             </div>
         </div>
+        
+        
+        
+        
     </div>
     <div class="sidebar-overlay" data-reff=""></div>
-    <script src="assetsadmin/js/jquery-3.2.1.min.js"></script>
-	<script src="assetsadmin/js/popper.min.js"></script>
-    <script src="assetsadmin/js/bootstrap.min.js"></script>
-    <script src="assetsadmin/js/jquery.slimscroll.js"></script>
-    <script src="assetsadmin/js/Chart.bundle.js"></script>
-    <script src="assetsadmin/js/chart.js"></script>
-    <script src="assetsadmin/js/app.js"></script>
+    <script src="{{asset('assetsadmin/js/jquery-3.2.1.min.js')}}"></script>
+	<script src="{{asset('assetsadmin/js/popper.min.js')}}"></script>
+    <script src="{{asset('assetsadmin/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('assetsadmin/js/jquery.slimscroll.js')}}"></script>
+    <script src="{{asset('assetsadmin/js/Chart.bundle.js')}}"></script>
+    <script src="{{asset('assetsadmin/js/chart.js')}}"></script>
+    <script src="{{asset('assetsadmin/js/app.js')}}"></script>
 
 </body>
 </html>

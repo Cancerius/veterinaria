@@ -63,7 +63,7 @@
   <!-- ======= Hero Section ======= -->
   <section id="hero">
     <div class="hero-container" data-aos="fade-up">
-      <h1>CLINICA VETERINARIA "FERNANDEZ"</h1>
+      <h1>CLINICA VETERINARIA "PATITAS POR SIEMPRE"</h1>
       
      
     </div>

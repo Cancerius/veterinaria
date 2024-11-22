@@ -21,6 +21,6 @@ class Admin
             }
         return $next($request);
     }
-    return redirect()->to('/');
+    return redirect()->route('login.index');
 }
 }

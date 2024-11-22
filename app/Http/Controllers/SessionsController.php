@@ -11,27 +11,21 @@ class SessionsController extends Controller
         return view('auth.login');
     }
 
-    public function store(){
+    public function store()
+{
+    if (!auth()->attempt(request(['email', 'password']))) {
+        return back()->withErrors([
+            'message' => 'Credenciales incorrectas. Por favor, intenta de nuevo.',
+        ]);
+    }
+    if (auth()->check()) {
+        return redirect()->route('admin.index');
+    }
+    return redirect()->route('login.index');
+}
+        public function destroy(){
 
-        if(auth()->attempt(request(['email','password',]))  == false){
-            return back()-> withErrors([
-                'message'=> 'Incorrecto'
-            ]);
-
-        } else {
-            if(auth()->user()->role == 'admin'){
-
-                return redirect()->route('admin.index');
-            }else {
-                return redirect()->to('/');
-            }
+            auth()->logout();
+            return redirect()->route('login.index');
         }
-        
-    }
-
-    public function destroy(){
-
-        auth()->logout();
-        return redirect()->to('/');
-    }
 }

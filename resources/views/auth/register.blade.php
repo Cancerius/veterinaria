@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 	<link rel="stylesheet" href="asset/css/style.css">
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 	</head>
 	<body class=" img js-fullheight" style="background-image: url(asset/images/bg1.jpg);">
@@ -29,40 +30,61 @@
 		      	<form  class="signin-form" method="POST">
                     @csrf
 		      		<div class="form-group">
-		      			<input type="text" class="form-control" placeholder="Nombre" id="name" name="name" >
-                          @error('name')
-                          <p class="border border-red-500 rounded-md bg-red-100 w-full text-red-600 p-2 my-2">{{$message}}</p>
+		      			<input type="text" class="form-control" placeholder="Nombre Completo" id="nombre_completo" name="nombre_completo" >
+                          @error('nombre_completo')
+                          <p class="border border-red-500 rounded-md bg-red-100 w-full text-red-600 p-2 my-2">El campo de nombre completo es obligatorio.</p>
                            @enderror
 		      		</div>
 
                       <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Email" id="email" name="email" >
+                        <input type="email" class="form-control" placeholder="Correo electronico" id="email" name="email" >
                         @error('email')
-                        <p class="border border-red-500 rounded-md bg-red-100 w-full text-red-600 p-2 my-2">{{$message}}</p>
+                        <p class="border border-red-500 rounded-md bg-red-100 w-full text-red-600 p-2 my-2">El campo de correo electrónico es obligatorio.</p>
                          @enderror
                     </div>
 
-					<div class="form-group">
-                        <input type="text" class="form-control" placeholder="Rol" id="role" name="role" >
-                        @error('email')
-                        <p class="border border-red-500 rounded-md bg-red-100 w-full text-red-600 p-2 my-2">{{$message}}</p>
-                         @enderror
-                    </div>
-					
+						<div class="form-group">
+							<input placeholder="Contraseña" id="password" name="password" type="password" class="form-control">
+							<span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password" onclick="togglePasswordVisibility('#password')"></span>
+							@error('password')
+							<p class="border border-red-500 rounded-md bg-red-100 w-full text-red-600 p-2 my-2">El campo de contraseña es obligatorio.</p>
+							@enderror
+						</div>
+						
+						<script>
+							function togglePasswordVisibility(passwordFieldId) {
+								var passwordField = $(passwordFieldId);
+						
+								// Cambia el tipo de entrada entre "password" y "text"
+								var fieldType = passwordField.attr("type") === "password" ? "text" : "password";
+								passwordField.attr("type", fieldType);
+						
+								// Cambia el icono del ojo entre abierto y cerrado
+								$(passwordFieldId + "+ .field-icon").toggleClass("fa-eye fa-eye-slash");
+						
+								// Enfócate en el campo de contraseña después de cambiar el tipo de entrada
+								passwordField.focus();
+							}
+						</script>
 
-	            <div class="form-group">
-	              <input placeholder="Password" id="password" name="password" type="password" class="form-control" >
-	              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                  @error('password')
-                  <p class="border border-red-500 rounded-md bg-red-100 w-full text-red-600 p-2 my-2">{{$message}}</p>
-                   @enderror
-                </div>
-
-                <div class="form-group">
-                    <input placeholder="Password confirmacion" id="password_confirmation" name="password_confirmation"type="password" class="form-control" >
-                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                  </div>
-
+								<div class="form-group">
+									<input placeholder="Repita la contraseña" id="password_confirmation" name="password_confirmation" type="password" class="form-control">
+									<span toggle="#password_confirmation" class="fa fa-fw fa-eye field-icon toggle-password_confirmation" onclick="togglePasswordVisibility('#password_confirmation')"></span>
+								</div>
+								
+								<script>
+									function togglePasswordVisibility(passwordFieldId) {
+										var passwordField = $(passwordFieldId);
+								
+										// Cambia el tipo de entrada entre "password" y "text"
+										var fieldType = passwordField.attr("type");
+										passwordField.attr("type", fieldType === "password" ? "text" : "password");
+								
+										// Cambia el icono del ojo entre abierto y cerrado
+										$(passwordFieldId + "+ .field-icon").toggleClass("fa-eye fa-eye-slash");
+									}
+								</script>
+				 
 	            <div class="form-group">
 	            	<button type="submit" class="form-control btn btn-primary submit px-3">Registrarse</button>
 	            </div>
@@ -79,6 +101,22 @@
   <script src="asset/js/popper.js"></script>
   <script src="asset/js/bootstrap.min.js"></script>
   <script src="asset/js/main.js"></script>
+  <script>
+	$(document).ready(function() {
+	  $(".toggle-password").click(function() {
+		// Obtén el campo de contraseña
+		var passwordField = $("#password");
+  
+		// Cambia el tipo de entrada entre "password" y "text"
+		var fieldType = passwordField.attr("type");
+		passwordField.attr("type", fieldType === "password" ? "text" : "password");
+  
+		// Cambia el icono del ojo entre abierto y cerrado
+		$(this).toggleClass("fa-eye fa-eye-slash");
+	  });
+	});
+  </script>
+  
 
 	</body>
 </html>
